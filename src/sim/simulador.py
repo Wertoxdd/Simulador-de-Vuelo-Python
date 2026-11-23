@@ -3,7 +3,7 @@ Clase encargada de hacer las simulaciones correspondientes.
 
 """
 
-from sim import parametros
+from sim import parametros, fisica
 from dataclasses import dataclass, field
 
 @dataclass #no es frozen porque los datos se rellenan durante la simulacion
@@ -39,22 +39,30 @@ class Registro:
     @property
     def velocidad_impacto(self) -> float:
         return self.velocidad[-1]      
-
     
-registro1 = Registro()
-registro1.registrar(1, 4, 0.5, 50)
-registro1.registrar(2,20,4,200)
-registro1.registrar(3,24,6,300)
-print(len(registro1))
-print(registro1.tiempo_total)
-print(registro1.velocidad_impacto)
-print(registro1.apogeo)
-print(registro1.instante_apogeo)
-
-def bucle_ppal(cohete: parametros.Cohete, dt=0.001, t_maximo=1000) -> Registro:
+    def imprimir_resumen(self) -> None:
+        listas = {"Tiempos": self.tiempo, "Alturas": self.altura, "Velocidades": self.velocidad, "Aceleraciones": self.aceleracion}
+        for lista in listas: 
+            print(listas[lista] + ": " + print(lista))
+        
+        print()
+        print("Apogeo: " + self.apogeo)
+        print("Instante del apogeo: " + self.instante_apogeo)
+        print("Tiempo total del vuelo: " + self.tiempo_total)
+        print("Velocidad del impacto: " + self.velocidad_impacto)
+        
+        
+def simular(cohete: parametros.Cohete, dt=0.001, t_maximo=1000) -> Registro:
     if cohete.empuje <= cohete.masa*parametros.GRAVEDAD:
         raise ValueError("Error: Calculos erroneos (empuje menor que el peso).")
     
     t, h, v = 0.0, 0.0, 0.0
     registro = Registro()
-    
+    while (h > 0 or v >= 0) and t < t_maximo:
+        a = fisica.calcular_aceleracion(t)
+        registro.registrar(t, h, v, a)
+        v += a*dt
+        h += v*dt
+        t += dt
+        
+    return registro
