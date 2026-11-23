@@ -41,11 +41,7 @@ class Registro:
         return self.velocidad[-1]      
     
     def imprimir_resumen(self) -> None:
-        listas = {"Tiempos": self.tiempo, "Alturas": self.altura, "Velocidades": self.velocidad, "Aceleraciones": self.aceleracion}
-        for lista in listas: 
-            print(listas[lista] + ": " + print(lista))
-        
-        print()
+        print("------|   RESUMEN   |------")
         print("Apogeo: " + self.apogeo)
         print("Instante del apogeo: " + self.instante_apogeo)
         print("Tiempo total del vuelo: " + self.tiempo_total)
