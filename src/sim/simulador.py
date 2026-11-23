@@ -42,10 +42,10 @@ class Registro:
     
     def imprimir_resumen(self) -> None:
         print("------|   RESUMEN   |------")
-        print("Apogeo: " + self.apogeo)
-        print("Instante del apogeo: " + self.instante_apogeo)
-        print("Tiempo total del vuelo: " + self.tiempo_total)
-        print("Velocidad del impacto: " + self.velocidad_impacto)
+        print("Apogeo: " + str(self.apogeo))
+        print("Instante del apogeo: " + str(self.instante_apogeo))
+        print("Tiempo total del vuelo: " + str(self.tiempo_total))
+        print("Velocidad del impacto: " + str(self.velocidad_impacto))
         
         
 def simular(cohete: parametros.Cohete, dt: float, t_maximo: float) -> Registro:
@@ -55,7 +55,7 @@ def simular(cohete: parametros.Cohete, dt: float, t_maximo: float) -> Registro:
     t, h, v = 0.0, 0.0, 0.0
     registro = Registro()
     while (h > 0 or v >= 0) and t < t_maximo:
-        a = fisica.calcular_aceleracion(t)
+        a = fisica.calcular_aceleracion(t, cohete)
         registro.registrar(t, h, v, a)
         v += a*dt
         h += v*dt
