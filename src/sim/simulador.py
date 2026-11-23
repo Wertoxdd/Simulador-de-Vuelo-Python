@@ -48,7 +48,7 @@ class Registro:
         print("Velocidad del impacto: " + self.velocidad_impacto)
         
         
-def simular(cohete: parametros.Cohete, dt=0.001, t_maximo=1000) -> Registro:
+def simular(cohete: parametros.Cohete, dt: float, t_maximo: float) -> Registro:
     if cohete.empuje <= cohete.masa*parametros.GRAVEDAD:
         raise ValueError("Error: Calculos erroneos (empuje menor que el peso).")
     
