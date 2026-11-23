@@ -4,7 +4,7 @@ Clase responsable de todas las funciones físicas y matemáticas del cohete.
 
 """
 
-import parametros
+from sim import parametros
 
 
 def calcular_aceleracion(tiempo, empuje, masa, t_combustion) -> float:
@@ -12,4 +12,3 @@ def calcular_aceleracion(tiempo, empuje, masa, t_combustion) -> float:
         return empuje/masa-parametros.GRAVEDAD
     else:
         return -parametros.GRAVEDAD
-    
