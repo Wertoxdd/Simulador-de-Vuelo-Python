@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/sim/__init__.py
+src/sim/__main__.py
+src/sim/cohete.py
+src/sim/fisica.py
+src/sim/graficas.py
+src/sim/parametros.py
+src/sim/simulador.py
+src/simulador.egg-info/PKG-INFO
+src/simulador.egg-info/SOURCES.txt
+src/simulador.egg-info/dependency_links.txt
+src/simulador.egg-info/top_level.txt
