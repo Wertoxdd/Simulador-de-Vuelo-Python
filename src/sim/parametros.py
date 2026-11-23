@@ -12,5 +12,3 @@ class Cohete:
     tiempo_combustion: float
 
 GRAVEDAD = constants.g
-
-cohete1 = Cohete(masa=1.0, empuje=30.0, tiempo_combustion=2.0)
