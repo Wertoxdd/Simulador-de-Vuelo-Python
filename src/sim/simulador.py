@@ -52,14 +52,14 @@ def simular(cohete: parametros.Cohete, dt: float, t_maximo: float) -> Registro:
     if cohete.empuje <= cohete.masa*parametros.GRAVEDAD:
         raise ValueError("Error: Calculos erroneos (empuje menor que el peso).")
     
-    t, h, v = 0.0, 0.0, 0.0
-    registro = Registro()
-    cont = 0
+    t, h, v, paso = 0.0, 0.0, 0.0, 0
+    registro = Registro()   
     while (h > 0 or v >= 0) and t < t_maximo:
+        t = paso * dt
         a = fisica.calcular_aceleracion(t, cohete)
         registro.registrar(t, h, v, a)
         v += a*dt
         h += v*dt
-        t += dt
-        
+        paso += 1
+
     return registro
