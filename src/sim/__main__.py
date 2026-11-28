@@ -5,7 +5,6 @@ Clase principal
 """
 
 from sim import parametros, simulador, graficas
-import time
 
 def main():
     cohete_prueba = parametros.Cohete(masa=1.0, empuje=30, tiempo_combustion=2)
