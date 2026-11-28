@@ -48,10 +48,15 @@ def graficar_aceleración(registro) -> None:
 def graficar_vuelo(registro) -> None:
     fig, ejes = plt.subplots(3, 1, sharex=True, figsize=(10, 8))
     ejes[0].plot(registro.tiempo, registro.altura)
+    ejes[0].set_ylabel("Altura (m)")
+    ejes[0].set_xlabel("Tiempo (s)")
     ejes[1].plot(registro.tiempo, registro.velocidad)
+    ejes[1].set_ylabel("Velocidad (m/s)")
+    ejes[1].set_xlabel("Tiempo (s)")
     ejes[2].plot(registro.tiempo, registro.aceleracion)
+    ejes[2].set_ylabel("Aceleración (m/s^2)")
+    ejes[2]set_xlabel("Tiempo (s)")
     for eje in ejes:
         eje.grid(True)
-    plt.legend()
+        
     plt.show()
-    
