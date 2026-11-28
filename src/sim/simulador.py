@@ -48,7 +48,7 @@ class Registro:
         print(f"Velocidad del impacto: {self.velocidad_impacto :.2f}m/s")
         
         
-def simular(cohete: parametros.Cohete, dt: float, t_maximo: float) -> Registro:
+def simular(cohete: parametros.Cohete, dt: float, t_maximo: float, semi_implicito: bool = True) -> Registro:
     if cohete.empuje <= cohete.masa*parametros.GRAVEDAD:
         raise ValueError("Error: Calculos erroneos (empuje menor que el peso).")
     
@@ -58,8 +58,12 @@ def simular(cohete: parametros.Cohete, dt: float, t_maximo: float) -> Registro:
         t = paso * dt
         a = fisica.calcular_aceleracion(t, cohete)
         registro.registrar(t, h, v, a)
-        v += a*dt
-        h += v*dt
+        if semi_implicito:
+            v += a*dt
+            h += v*dt
+        else:
+            h += v*dt
+            v += a*dt
         paso += 1
 
     return registro
